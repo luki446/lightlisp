@@ -1,3 +1,7 @@
+use std::collections::HashMap;
+use std::fmt;
+use std::iter::Iterator;
+
 #[derive(Debug)]
 enum Token {
     LeftParen,
@@ -6,23 +10,49 @@ enum Token {
     Symbol(String),
 }
 
-#[derive(Copy, Clone)]
+enum Expr {
+    Number(i32),
+    Symbol(String),
+    List(Vec<Expr>),
+    Func(fn(&[Expr]) -> Result<Expr, String>),
+}
+
+impl fmt::Display for Expr
+{
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let res = match self {
+            Expr::Number(x) => x.to_string(),
+            Expr::Symbol(x) => x.to_string(),
+            Expr::List(x) => {
+                let list: Vec<String> = x.iter().map(|s| s.to_string()).collect();
+                format!("({})", list.join(", "))
+            },
+            Expr::Func(x) => "Function {}".to_string()
+        };
+
+        write!(f, "{}", res)
+    }
+}
+
 pub struct Interpreter {
     ast: bool,
+    data: HashMap<String, Expr>,
 }
 
 impl Interpreter {
     pub fn new() -> Interpreter {
-        Interpreter { ast: false }
+        Interpreter {
+            ast: false,
+            data: HashMap::new(),
+        }
     }
 
-    pub fn with_ast(&self) -> Interpreter {
-        let mut res = self.clone();
-        res.ast = true;
-        res
+    pub fn with_ast(mut self) -> Interpreter {
+        self.ast = true;
+        self
     }
 
-    fn tokenize(self, src: String) -> Result<Vec<Token>, String> {
+    fn tokenize(src: String) -> Result<Vec<Token>, String> {
         let mut iter = src.chars().peekable();
 
         let mut res = Vec::new();
@@ -44,7 +74,7 @@ impl Interpreter {
                             foo.push(iter.next().unwrap())
                         }
 
-                        let mut parsed = 0;
+                        let parsed;
                         match foo.parse::<i32>() {
                             Ok(x) => parsed = x,
                             Err(x) => {
@@ -80,8 +110,13 @@ impl Interpreter {
         //Ok(vec![Token::LeftParen, Token::Symbol("+".to_string()), Token::Number(123), Token::Number(231), Token::Number(731)])
     }
 
+    fn parse(tokens: Vec<Token>) -> Result<Expr, String>
+    {
+        
+    }
+
     pub fn interpret(&mut self, src: String) {
-        let tokens = self.tokenize(src).unwrap();
+        let tokens = Interpreter::tokenize(src).unwrap();
 
         println!("{:?}", tokens);
     }
