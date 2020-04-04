@@ -1,13 +1,16 @@
 use std::collections::HashMap;
 use std::rc::Rc;
 
-#[path="tokens.rs"] mod tokens;
+#[path = "tokens.rs"]
+mod tokens;
 use tokens::*;
 
-#[path="parser.rs"] mod parser;
+#[path = "parser.rs"]
+mod parser;
 use parser::*;
 
-#[path = "ast/mod.rs"] mod ast;
+#[path = "ast/mod.rs"]
+mod ast;
 use ast::*;
 
 pub struct Interpreter {
