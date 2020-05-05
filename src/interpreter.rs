@@ -1,28 +1,19 @@
 use std::collections::HashMap;
-use std::rc::Rc;
 
-#[path = "tokens.rs"]
-mod tokens;
-use tokens::*;
-
-#[path = "parser.rs"]
-mod parser;
-use parser::*;
-
-#[path = "ast/mod.rs"]
-mod ast;
-use ast::*;
+use crate::tokens::tokenize;
+use crate::parser::parse;
+use crate::ast::Environment;
 
 pub struct Interpreter {
     ast: bool,
-    data: HashMap<String, Rc<dyn ExprAST>>,
+    env: Environment
 }
 
 impl Interpreter {
     pub fn new() -> Interpreter {
         Interpreter {
             ast: false,
-            data: HashMap::new(),
+            env: Environment::new(),
         }
     }
 
@@ -35,8 +26,9 @@ impl Interpreter {
         let tokens = tokenize(src).unwrap();
         let expr_tree = parse(&tokens).unwrap();
 
-        let vis = Visitor(&expr_tree);
-        println!("{}", vis);
+        if self.ast {
+            println!("{:#?}", expr_tree);
+        }
 
         // for i in expr_tree {
         //     i.eval(&mut self.data);
