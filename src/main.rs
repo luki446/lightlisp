@@ -1,10 +1,8 @@
-mod interpreter;
 mod ast;
-mod tokens;
+mod interpreter;
 mod parser;
+mod tokens;
 
-
-use ast::*;
 use interpreter::*;
 
 fn main() {

@@ -4,7 +4,6 @@ use crate::tokens::*;
 
 use crate::ast::ast::Cell;
 
-
 pub fn parse(tokens: &Vec<Token>) -> Result<Vec<Cell>, String> {
     let mut iter = tokens.iter().peekable();
     let mut exprs: Vec<Cell> = Vec::new();
