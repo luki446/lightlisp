@@ -57,7 +57,7 @@ pub fn division(args: &Vec<Cell>, env: &Environment) -> Cell {
 
     match args[0] {
         Cell::Number(num) => {
-            let mut value = num;
+            value = num;
         }
         _ => {
             return Cell::Number(0);
