@@ -6,7 +6,7 @@ use std::rc::Rc;
 
 pub struct Environment {
     parent: Option<Rc<Environment>>,
-    data: HashMap<String, Cell>,
+    pub data: HashMap<String, Cell>,
 }
 
 impl Environment {

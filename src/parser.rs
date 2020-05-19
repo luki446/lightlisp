@@ -1,10 +1,9 @@
-use std::rc::Rc;
-
 use crate::tokens::*;
 
+use crate::ast::ast::ASTree;
 use crate::ast::ast::Cell;
 
-pub fn parse(tokens: &Vec<Token>) -> Result<Vec<Cell>, String> {
+pub fn parse(tokens: &Vec<Token>) -> Result<ASTree, String> {
     let mut iter = tokens.iter().peekable();
     let mut exprs: Vec<Cell> = Vec::new();
     while iter.peek().is_some() {
@@ -16,7 +15,7 @@ pub fn parse(tokens: &Vec<Token>) -> Result<Vec<Cell>, String> {
         }
     }
 
-    Ok(exprs)
+    Ok(ASTree(exprs))
 }
 
 fn parse_expr(
