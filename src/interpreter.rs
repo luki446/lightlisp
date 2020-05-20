@@ -1,5 +1,5 @@
-use crate::ast::Environment;
 use crate::ast::ast::Cell;
+use crate::ast::Environment;
 use crate::parser::parse;
 use crate::stdlib::io::add_basic_io;
 use crate::stdlib::math::add_basic_math;
@@ -22,7 +22,7 @@ impl Interpreter {
         inter
     }
 
-    pub fn interpret(&mut self, src: &String) -> Cell{
+    pub fn interpret(&mut self, src: &String) -> Cell {
         let mut result = Cell::Number(0);
 
         let tokens = tokenize(src).unwrap();

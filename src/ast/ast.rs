@@ -94,14 +94,14 @@ impl Cell {
 }
 
 impl fmt::Display for Cell {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> { 
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
         match self {
             Cell::Number(num) => {
                 write!(f, "{}", num)?;
-            },
+            }
             _ => {
                 write!(f, "__")?;
-            } 
+            }
         }
 
         Ok(())

@@ -1,15 +1,15 @@
 mod ast;
 mod interpreter;
+mod opt;
 mod parser;
 mod stdlib;
 mod tokens;
-mod opt;
 
+use interpreter::*;
+use opt::Opt;
 use std::fs::File;
 use std::io::prelude::*;
-use opt::Opt;
 use structopt::StructOpt;
-use interpreter::*;
 
 fn main() {
     use std::io::{stdin, stdout};
@@ -39,7 +39,7 @@ fn main() {
             }
 
             int.interpret(&content);
-        },
+        }
         None => {
             let mut input = String::new();
             loop {
