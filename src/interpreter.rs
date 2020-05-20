@@ -26,7 +26,9 @@ impl Interpreter {
         self
     }
 
-    pub fn interpret(&mut self, src: String) {
+    pub fn interpret(&mut self, src: &String) {
+        let mut result = 0;
+
         let tokens = tokenize(src).unwrap();
         let expr_tree = parse(&tokens).unwrap();
 

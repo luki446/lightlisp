@@ -6,7 +6,7 @@ pub enum Token {
     Symbol(String),
 }
 
-pub fn tokenize(src: String) -> Result<Vec<Token>, String> {
+pub fn tokenize(src: &String) -> Result<Vec<Token>, String> {
     let mut iter = src.chars().peekable();
 
     let mut res = Vec::new();

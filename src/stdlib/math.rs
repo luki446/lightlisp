@@ -53,7 +53,7 @@ pub fn multipication(args: &Vec<Cell>, env: &Environment) -> Cell {
 }
 
 pub fn division(args: &Vec<Cell>, env: &Environment) -> Cell {
-    let mut value: i64 = 0;
+    let mut value: i64;
 
     match args[0] {
         Cell::Number(num) => {
