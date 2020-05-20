@@ -1,5 +1,5 @@
 [package]
-name = "lightlisp"
+name = "llisp"
 version = "0.1.0"
 authors = ["luki446 <luki446@gmail.com>"]
 edition = "2018"

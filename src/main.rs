@@ -17,7 +17,7 @@ fn main() {
         let _ = stdout().flush();
         stdin().read_line(&mut input).expect("Error user input");
         if !input.trim().is_empty() {
-            int.interpret(&input);
+            println!("{}", int.interpret(&input));
         }
     }
     //int.interpret("(print (+ 1 2 3(* 2 3 4)))".to_string());

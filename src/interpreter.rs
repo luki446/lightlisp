@@ -1,4 +1,5 @@
 use crate::ast::Environment;
+use crate::ast::ast::Cell;
 use crate::parser::parse;
 use crate::stdlib::io::add_basic_io;
 use crate::stdlib::math::add_basic_math;
@@ -26,8 +27,8 @@ impl Interpreter {
         self
     }
 
-    pub fn interpret(&mut self, src: &String) {
-        let mut result = 0;
+    pub fn interpret(&mut self, src: &String) -> Cell{
+        let mut result = Cell::Number(0);
 
         let tokens = tokenize(src).unwrap();
         let expr_tree = parse(&tokens).unwrap();
@@ -38,7 +39,9 @@ impl Interpreter {
         }
 
         for i in expr_tree.0 {
-            i.eval(&mut self.env);
+            result = i.eval(&mut self.env).unwrap();
         }
+
+        result
     }
 }
