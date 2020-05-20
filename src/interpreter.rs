@@ -6,7 +6,7 @@ use crate::stdlib::math::add_basic_math;
 use crate::tokens::tokenize;
 
 pub struct Interpreter {
-    ast: bool,
+    pub ast: bool,
     env: Environment,
 }
 
@@ -20,11 +20,6 @@ impl Interpreter {
         add_basic_math(&mut inter.env);
 
         inter
-    }
-
-    pub fn with_ast(mut self) -> Interpreter {
-        self.ast = true;
-        self
     }
 
     pub fn interpret(&mut self, src: &String) -> Cell{
