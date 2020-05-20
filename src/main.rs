@@ -12,11 +12,9 @@ use structopt::StructOpt;
 use interpreter::*;
 
 fn main() {
-    use std::io::{stdin, stdout, Write};
+    use std::io::{stdin, stdout};
 
     let opt = Opt::from_args();
-
-    println!("{:#?}", opt);
 
     let mut int = Interpreter::new();
 
