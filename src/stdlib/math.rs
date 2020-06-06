@@ -19,8 +19,12 @@ pub fn addition(args: &Vec<Cell>, env: &Environment) -> Cell {
 }
 
 pub fn subtraction(args: &Vec<Cell>, env: &Environment) -> Cell {
-    let mut value: i64 = 0;
-    for i in args {
+    let mut value: i64 = match args[0] {
+        Cell::Number(x) => x,
+        _ => 0
+    };
+    
+    for i in args.iter().skip(1) {
         let val = i.eval(&env);
         if val.is_some() {
             match val.unwrap() {
