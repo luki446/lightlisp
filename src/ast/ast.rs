@@ -115,3 +115,42 @@ impl fmt::Debug for Cell {
         Ok(())
     }
 }
+
+impl PartialEq for Cell {
+    fn eq(&self, other: &Self) -> bool {
+        match self {
+            Cell::Number(num) => {
+                if let Cell::Number(num2) = other {
+                    return num2 == num;
+                } else {
+                    false
+                }
+            }
+            Cell::Symbol(sym) => {
+                if let Cell::Symbol(sym2) = other {
+                    return sym == sym2;
+                } else {
+                    false
+                }
+            }
+            Cell::FuncCall(name, args) => {
+                if let Cell::FuncCall(name2, args2) = other {
+                    name == name2 && args == args2
+                } else {
+                    false
+                }
+            }
+            Cell::List(list) => {
+                if let Cell::List(list2) = other {
+                    list == list2
+                } else {
+                    false
+                }
+            }
+            Cell::BuiltIn(_) => {
+                false
+            }
+        }
+    }
+    
+}
