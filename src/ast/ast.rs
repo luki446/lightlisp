@@ -147,10 +147,7 @@ impl PartialEq for Cell {
                     false
                 }
             }
-            Cell::BuiltIn(_) => {
-                false
-            }
+            Cell::BuiltIn(_) => false,
         }
     }
-    
 }
