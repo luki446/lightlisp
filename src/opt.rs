@@ -4,7 +4,7 @@ use structopt::StructOpt;
 #[structopt(
     name = "llisp",
     about = "Simple Light Lisp interpreter",
-    author = "luki446<luki446@gmail.com>"
+    author = "made by luki446<luki446@gmail.com>",
 )]
 pub struct Opt {
     /// Activate Abstract Syntax Tree printing
