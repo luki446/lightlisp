@@ -15,6 +15,7 @@ impl fmt::Debug for ASTree {
     }
 }
 
+#[allow(dead_code)]
 #[derive(Clone)]
 pub enum Cell {
     Number(i64),
