@@ -26,6 +26,24 @@ mod tests {
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
-        assert_eq!(inter.interpret(&"(- 3 2 2)".to_string()), Cell::Number(-1))
+        assert_eq!(inter.interpret(&"(- 3 2 3)".to_string()), Cell::Number(-2))
+    }
+
+    #[test]
+    fn simple_mul() {
+        use llisp::ast::ast::Cell;
+        use llisp::interpreter::Interpreter;
+        let mut inter = Interpreter::new();
+
+        assert_eq!(inter.interpret(&"(* 2 3 2)".to_string()), Cell::Number(12))
+    }
+
+    #[test]
+    fn simple_div() {
+        use llisp::ast::ast::Cell;
+        use llisp::interpreter::Interpreter;
+        let mut inter = Interpreter::new();
+
+        assert_eq!(inter.interpret(&"(/ 48 8 2)".to_string()), Cell::Number(3))
     }
 }
