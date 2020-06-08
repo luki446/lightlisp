@@ -46,14 +46,10 @@ fn parse_expr(
                     }
                 }
                 tokens.next();
-                return Ok(Cell::FuncCall(y.to_string(), args));
+                Ok(Cell::FuncCall(y.to_string(), args))
             }
-            e @ _ => {
-                return Err(format!("Unexpected token {:?} at parsing expressions", e));
-            }
+            e => Err(format!("Unexpected token {:?} at parsing expressions", e)),
         },
-        None => {
-            return Err("Unexpected end of tokens in middle of expression".to_string());
-        }
+        None => Err("Unexpected end of tokens in middle of expression".to_string()),
     }
 }

@@ -28,22 +28,14 @@ pub enum Cell {
 impl Cell {
     pub fn eval(&self, env: &Environment) -> Option<Cell> {
         match self {
-            e @ Cell::Number(_) => {
-                return Some(e.clone());
-            }
-            Cell::Symbol(sym) => {
-                return env.find(sym);
-            }
+            e @ Cell::Number(_) => Some(e.clone()),
+            Cell::Symbol(sym) => env.find(sym),
             Cell::FuncCall(name, args) => match env.find(name) {
                 Some(x) => match x {
-                    Cell::BuiltIn(func) => {
-                        return Some(func(args, &env));
-                    }
-                    _ => {
-                        return None;
-                    }
+                    Cell::BuiltIn(func) => Some(func(args, &env)),
+                    _ => None,
                 },
-                None => return None,
+                None => None,
             },
             Cell::List(cells) => {
                 let mut ret: Option<Cell> = None;
@@ -53,9 +45,7 @@ impl Cell {
 
                 ret
             }
-            Cell::BuiltIn(_) => {
-                return None;
-            }
+            Cell::BuiltIn(_) => None,
         }
     }
 
@@ -122,14 +112,14 @@ impl PartialEq for Cell {
         match self {
             Cell::Number(num) => {
                 if let Cell::Number(num2) = other {
-                    return num2 == num;
+                    num2 == num
                 } else {
                     false
                 }
             }
             Cell::Symbol(sym) => {
                 if let Cell::Symbol(sym2) = other {
-                    return sym == sym2;
+                    sym == sym2
                 } else {
                     false
                 }

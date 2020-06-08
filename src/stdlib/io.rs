@@ -7,7 +7,7 @@ pub fn print_func(args: &Vec<Cell>, env: &Environment) -> Cell {
         counter += print_intern(i, &env);
     }
 
-    return Cell::Number(counter);
+    Cell::Number(counter)
 }
 
 fn print_intern(to_print: &Cell, env: &Environment) -> i64 {

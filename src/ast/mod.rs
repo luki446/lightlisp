@@ -19,16 +19,10 @@ impl Environment {
 
     pub fn find(&self, symbol: &String) -> Option<Cell> {
         match self.data.get(symbol) {
-            Some(x) => {
-                return Some(x.clone());
-            }
+            Some(x) => Some(x.clone()),
             None => match &self.parent {
-                Some(y) => {
-                    return y.find(symbol);
-                }
-                None => {
-                    return None;
-                }
+                Some(y) => y.find(symbol),
+                None => None,
             },
         }
     }

@@ -20,7 +20,7 @@ pub fn tokenize(src: &String) -> Result<Vec<Token>, String> {
                 ')' => {
                     res.push(Token::RightParen);
                 }
-                e @ _ if x.is_digit(10) || (x == '-' && iter.peek().unwrap().is_digit(10)) => {
+                e if x.is_digit(10) || (x == '-' && iter.peek().unwrap().is_digit(10)) => {
                     let mut foo = String::new();
                     foo.push(e);
 
@@ -38,7 +38,7 @@ pub fn tokenize(src: &String) -> Result<Vec<Token>, String> {
 
                     res.push(Token::Number(parsed));
                 }
-                e @ _ if x.is_ascii_graphic() => {
+                e if x.is_ascii_graphic() => {
                     let mut foo = String::new();
                     foo.push(e);
 
@@ -49,7 +49,7 @@ pub fn tokenize(src: &String) -> Result<Vec<Token>, String> {
                     res.push(Token::Symbol(foo));
                 }
                 _ if x.is_whitespace() => (),
-                e @ _ => {
+                e => {
                     return Err(format!("Unexpected token {}", e));
                 }
             },
@@ -59,5 +59,5 @@ pub fn tokenize(src: &String) -> Result<Vec<Token>, String> {
         }
     }
 
-    return Ok(res);
+    Ok(res)
 }
