@@ -1,0 +1,21 @@
+name: Rust correctness check
+
+on: 
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
+    - name: Run formatting test
+      run: cargo fmt -- --check
+    - name: Run clippy
+      run: cargo clippy -- -D warnings
