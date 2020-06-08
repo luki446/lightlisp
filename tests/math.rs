@@ -3,7 +3,7 @@ extern crate llisp;
 mod tests {
     #[test]
     fn math_example_1() {
-        use llisp::ast::ast::Cell;
+        use llisp::ast::cells::Cell;
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
@@ -15,7 +15,7 @@ mod tests {
 
     #[test]
     fn math_example_2() {
-        use llisp::ast::ast::Cell;
+        use llisp::ast::cells::Cell;
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 

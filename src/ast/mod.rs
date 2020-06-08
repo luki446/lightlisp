@@ -1,6 +1,6 @@
-pub mod ast;
+pub mod cells;
 
-use ast::Cell;
+use cells::Cell;
 use std::collections::HashMap;
 use std::rc::Rc;
 

@@ -1,4 +1,4 @@
-use crate::ast::ast::Cell;
+use crate::ast::cells::Cell;
 use crate::ast::Environment;
 
 pub fn print_func(args: &Vec<Cell>, env: &Environment) -> Cell {

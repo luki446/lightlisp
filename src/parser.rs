@@ -1,7 +1,7 @@
 use crate::tokens::*;
 
-use crate::ast::ast::ASTree;
-use crate::ast::ast::Cell;
+use crate::ast::cells::ASTree;
+use crate::ast::cells::Cell;
 
 pub fn parse(tokens: &Vec<Token>) -> Result<ASTree, String> {
     let mut iter = tokens.iter().peekable();

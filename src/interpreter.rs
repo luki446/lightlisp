@@ -1,4 +1,4 @@
-use crate::ast::ast::Cell;
+use crate::ast::cells::Cell;
 use crate::ast::Environment;
 use crate::parser::parse;
 use crate::stdlib::io::add_basic_io;

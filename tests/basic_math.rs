@@ -4,7 +4,7 @@ mod tests {
 
     #[test]
     fn simple_addition() {
-        use llisp::ast::ast::Cell;
+        use llisp::ast::cells::Cell;
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
@@ -13,7 +13,7 @@ mod tests {
 
     #[test]
     fn simple_wrong_addition() {
-        use llisp::ast::ast::Cell;
+        use llisp::ast::cells::Cell;
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
@@ -22,7 +22,7 @@ mod tests {
 
     #[test]
     fn simple_subtraction() {
-        use llisp::ast::ast::Cell;
+        use llisp::ast::cells::Cell;
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
@@ -31,7 +31,7 @@ mod tests {
 
     #[test]
     fn simple_mul() {
-        use llisp::ast::ast::Cell;
+        use llisp::ast::cells::Cell;
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
@@ -40,7 +40,7 @@ mod tests {
 
     #[test]
     fn simple_div() {
-        use llisp::ast::ast::Cell;
+        use llisp::ast::cells::Cell;
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
