@@ -41,9 +41,11 @@ pub fn tokenize(src: &String) -> Result<Vec<Token>, String> {
                 e if x.is_ascii_graphic() => {
                     let mut foo = String::new();
                     foo.push(e);
-
-                    while iter.peek().unwrap().is_ascii_graphic() {
-                        foo.push(iter.next().unwrap())
+                    while iter.peek().unwrap().is_ascii_graphic()
+                        && *iter.peek().unwrap() != '('
+                        && *iter.peek().unwrap() != ')'
+                    {
+                        foo.push(iter.next().unwrap());
                     }
 
                     res.push(Token::Symbol(foo));
