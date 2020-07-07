@@ -41,8 +41,12 @@ fn parse_expr(
                             println!("Sym: {}", sym);
                             if *sym == "nil" {
                                 args.push(Cell::Nil);
-                                println!("Nill found");
-                            } else {
+                            } else if *sym == "true" {
+                                args.push(Cell::Bool(true));
+                            } else if *sym == "false" {
+                                args.push(Cell::Bool(false));
+                            }
+                            else {
                                 args.push(Cell::Symbol(sym.to_string()));
                             }
                             tokens.next();

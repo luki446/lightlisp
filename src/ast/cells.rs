@@ -24,6 +24,7 @@ pub enum Cell {
     List(Vec<Cell>),
     BuiltIn(fn(&Vec<Cell>, &Environment) -> Cell),
     Nil,
+    Bool(bool),
 }
 
 impl Cell {
@@ -48,6 +49,7 @@ impl Cell {
             }
             Cell::BuiltIn(_) => None,
             Cell::Nil => Some(Cell::Nil),
+            Cell::Bool(x) => Some(Cell::Bool(*x))
         }
     }
 
@@ -82,6 +84,9 @@ impl Cell {
             }
             Cell::Nil => {
                 writeln!(f, "Nil value")?;
+            }
+            Cell::Bool(x) => {
+                writeln!(f, "Bool value {}", x)?;
             }
         }
 
@@ -145,6 +150,13 @@ impl PartialEq for Cell {
             }
             Cell::BuiltIn(_) => false,
             Cell::Nil => *other == Cell::Nil,
+            Cell::Bool(x) => {
+                if let Cell::Bool(y) = *other {
+                    y == *x
+                } else {
+                    false
+                }
+            }
         }
     }
 }

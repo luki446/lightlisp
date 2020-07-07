@@ -22,6 +22,10 @@ fn print_intern(to_print: &Cell, env: &Environment) -> i64 {
             println!("nil");
             counter = 1;
         }
+        Cell::Bool(x) => {
+            println!("{}", x);
+            counter = 1;
+        }
         Cell::Symbol(sym) => {
             counter = match env.find(&sym) {
                 Some(x) => print_intern(&x, &env),
