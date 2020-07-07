@@ -23,6 +23,7 @@ pub enum Cell {
     FuncCall(String, Vec<Cell>),
     List(Vec<Cell>),
     BuiltIn(fn(&Vec<Cell>, &Environment) -> Cell),
+    Nil,
 }
 
 impl Cell {
@@ -46,6 +47,7 @@ impl Cell {
                 ret
             }
             Cell::BuiltIn(_) => None,
+            Cell::Nil => Some(Cell::Nil),
         }
     }
 
@@ -77,6 +79,9 @@ impl Cell {
             }
             Cell::BuiltIn(_) => {
                 writeln!(f, "__")?;
+            }
+            Cell::Nil => {
+                writeln!(f, "Nil value")?;
             }
         }
 
@@ -139,6 +144,7 @@ impl PartialEq for Cell {
                 }
             }
             Cell::BuiltIn(_) => false,
+            Cell::Nil => *other == Cell::Nil,
         }
     }
 }
