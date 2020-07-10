@@ -161,7 +161,7 @@ impl PartialEq for Cell {
                 } else {
                     false
                 }
-            },
+            }
             Cell::Bool(x) => {
                 if let Cell::Bool(y) = *other {
                     y == *x

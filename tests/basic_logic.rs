@@ -7,7 +7,10 @@ mod tests {
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
-        assert_eq!(inter.interpret(&"(if true 1 2)".to_string()), Cell::Number(1));
+        assert_eq!(
+            inter.interpret(&"(if true 1 2)".to_string()),
+            Cell::Number(1)
+        );
     }
 
     #[test]
@@ -16,7 +19,10 @@ mod tests {
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
-        assert_eq!(inter.interpret(&"(if false 1 2)".to_string()), Cell::Number(2));
+        assert_eq!(
+            inter.interpret(&"(if false 1 2)".to_string()),
+            Cell::Number(2)
+        );
     }
 
     #[test]
