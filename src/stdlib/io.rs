@@ -66,7 +66,7 @@ fn print_intern(to_print: &Cell, env: &Environment) -> i64 {
 }
 
 pub fn add_basic_io(env: &mut Environment) {
-    stdlib_expand!{env,
+    stdlib_expand! {env,
         "print" => print_func,
         "exit" => exit_func
     };

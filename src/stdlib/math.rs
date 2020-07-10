@@ -86,7 +86,7 @@ pub fn division(args: &Vec<Cell>, env: &Environment) -> Cell {
 }
 
 pub fn add_basic_math(env: &mut Environment) {
-    stdlib_expand!{env,
+    stdlib_expand! {env,
         "+" => addition,
         "-" => subtraction,
         "*" => multiplication,

@@ -133,7 +133,10 @@ mod tests {
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
-        assert_eq!(inter.interpret(&"(&& true true)".to_string()), Cell::Bool(true));
+        assert_eq!(
+            inter.interpret(&"(&& true true)".to_string()),
+            Cell::Bool(true)
+        );
     }
 
     #[test]
@@ -142,7 +145,10 @@ mod tests {
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
-        assert_eq!(inter.interpret(&"(&& true false)".to_string()), Cell::Bool(false));
+        assert_eq!(
+            inter.interpret(&"(&& true false)".to_string()),
+            Cell::Bool(false)
+        );
     }
 
     #[test]
@@ -151,7 +157,10 @@ mod tests {
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
-        assert_eq!(inter.interpret(&"(|| true false true)".to_string()), Cell::Bool(true));
+        assert_eq!(
+            inter.interpret(&"(|| true false true)".to_string()),
+            Cell::Bool(true)
+        );
     }
 
     #[test]
@@ -160,7 +169,10 @@ mod tests {
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
-        assert_eq!(inter.interpret(&"(|| false false nil)".to_string()), Cell::Bool(false));
+        assert_eq!(
+            inter.interpret(&"(|| false false nil)".to_string()),
+            Cell::Bool(false)
+        );
     }
 
     #[test]
@@ -169,6 +181,9 @@ mod tests {
         use llisp::interpreter::Interpreter;
         let mut inter = Interpreter::new();
 
-        assert_eq!(inter.interpret(&"(&& (= 123 123 123) (< 10 (* 10 10) (* 10 10 10)))".to_string()), Cell::Bool(false));
+        assert_eq!(
+            inter.interpret(&"(&& (= 123 123 123) (< 10 (* 10 10) (* 10 10 10)))".to_string()),
+            Cell::Bool(false)
+        );
     }
 }
