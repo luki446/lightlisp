@@ -23,6 +23,8 @@ pub enum Cell {
     FuncCall(String, Vec<Cell>),
     List(Vec<Cell>),
     BuiltIn(fn(&Vec<Cell>, &Environment) -> Cell),
+    Nil,
+    Bool(bool),
 }
 
 impl Cell {
@@ -46,6 +48,8 @@ impl Cell {
                 ret
             }
             Cell::BuiltIn(_) => None,
+            Cell::Nil => Some(Cell::Nil),
+            Cell::Bool(x) => Some(Cell::Bool(*x)),
         }
     }
 
@@ -78,6 +82,12 @@ impl Cell {
             Cell::BuiltIn(_) => {
                 writeln!(f, "__")?;
             }
+            Cell::Nil => {
+                writeln!(f, "Nil value")?;
+            }
+            Cell::Bool(x) => {
+                writeln!(f, "Bool value {}", x)?;
+            }
         }
 
         Ok(())
@@ -89,6 +99,12 @@ impl fmt::Display for Cell {
         match self {
             Cell::Number(num) => {
                 write!(f, "{}", num)?;
+            }
+            Cell::Bool(x) => {
+                write!(f, "{}", x)?;
+            }
+            Cell::Nil => {
+                write!(f, "nil")?;
             }
             _ => {
                 write!(f, "__")?;
@@ -139,6 +155,52 @@ impl PartialEq for Cell {
                 }
             }
             Cell::BuiltIn(_) => false,
+            Cell::Nil => {
+                if let Cell::Nil = *other {
+                    true
+                } else {
+                    false
+                }
+            }
+            Cell::Bool(x) => {
+                if let Cell::Bool(y) = *other {
+                    y == *x
+                } else {
+                    false
+                }
+            }
         }
+    }
+}
+
+impl PartialOrd for Cell {
+    fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering> {
+        return match self {
+            Cell::Number(num) => match other {
+                Cell::Number(num2) => Some(num.cmp(num2)),
+                _ => None,
+            },
+            Cell::Symbol(sym) => match other {
+                Cell::Symbol(sym2) => Some(sym.cmp(sym2)),
+                _ => None,
+            },
+            Cell::FuncCall(_, _) => None,
+            Cell::List(list) => match other {
+                Cell::List(list2) => Some(list.partial_cmp(list2).unwrap()),
+                _ => None,
+            },
+            Cell::BuiltIn(_) => None,
+            Cell::Nil => {
+                if let Cell::Nil = other {
+                    return Some(true.cmp(&true));
+                } else {
+                    return None;
+                }
+            }
+            Cell::Bool(val) => match other {
+                Cell::Bool(val2) => Some(val.cmp(val2)),
+                _ => None,
+            },
+        };
     }
 }

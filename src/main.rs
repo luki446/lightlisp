@@ -49,6 +49,7 @@ fn main() {
                 if !input.trim().is_empty() {
                     println!("{}", int.interpret(&input));
                 }
+                input.clear();
             }
         }
     }
