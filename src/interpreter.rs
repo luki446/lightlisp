@@ -2,6 +2,7 @@ use crate::ast::cells::Cell;
 use crate::ast::Environment;
 use crate::parser::parse;
 use crate::stdlib::io::add_basic_io;
+use crate::stdlib::logic::add_basic_logic;
 use crate::stdlib::math::add_basic_math;
 use crate::tokens::tokenize;
 
@@ -18,6 +19,7 @@ impl Interpreter {
         };
         add_basic_io(&mut inter.env);
         add_basic_math(&mut inter.env);
+        add_basic_logic(&mut inter.env);
 
         inter
     }

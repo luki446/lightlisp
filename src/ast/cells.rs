@@ -49,7 +49,7 @@ impl Cell {
             }
             Cell::BuiltIn(_) => None,
             Cell::Nil => Some(Cell::Nil),
-            Cell::Bool(x) => Some(Cell::Bool(*x))
+            Cell::Bool(x) => Some(Cell::Bool(*x)),
         }
     }
 
@@ -100,6 +100,12 @@ impl fmt::Display for Cell {
             Cell::Number(num) => {
                 write!(f, "{}", num)?;
             }
+            Cell::Bool(x) => {
+                write!(f, "{}", x)?;
+            }
+            Cell::Nil => {
+                write!(f, "nil")?;
+            }
             _ => {
                 write!(f, "__")?;
             }
@@ -149,7 +155,13 @@ impl PartialEq for Cell {
                 }
             }
             Cell::BuiltIn(_) => false,
-            Cell::Nil => *other == Cell::Nil,
+            Cell::Nil => {
+                if let Cell::Nil = *other {
+                    true
+                } else {
+                    false
+                }
+            },
             Cell::Bool(x) => {
                 if let Cell::Bool(y) = *other {
                     y == *x
