@@ -62,6 +62,7 @@ fn print_intern(to_print: &Cell, env: &Environment) -> i64 {
 }
 
 pub fn add_basic_io(env: &mut Environment) {
-    env.data
-        .insert("print".to_string(), Cell::BuiltIn(print_func));
+    stdlib_expand!{env,
+        "print" => print_func
+    };
 }

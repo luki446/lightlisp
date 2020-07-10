@@ -86,9 +86,10 @@ pub fn division(args: &Vec<Cell>, env: &Environment) -> Cell {
 }
 
 pub fn add_basic_math(env: &mut Environment) {
-    env.data.insert("+".to_string(), Cell::BuiltIn(addition));
-    env.data.insert("-".to_string(), Cell::BuiltIn(subtraction));
-    env.data
-        .insert("*".to_string(), Cell::BuiltIn(multipication));
-    env.data.insert("/".to_string(), Cell::BuiltIn(division));
+    stdlib_expand!{env,
+        "+" => addition,
+        "-" => subtraction,
+        "*" => multipication,
+        "/" => division
+    };
 }

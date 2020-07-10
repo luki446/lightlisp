@@ -15,5 +15,7 @@ pub fn if_fn(args: &Vec<Cell>, env: &Environment) -> Cell {
 }
 
 pub fn add_basic_logic(env: &mut Environment) {
-    env.data.insert("if".to_string(), Cell::BuiltIn(if_fn));
+    stdlib_expand!{env,
+        "if" => if_fn
+    };
 }
