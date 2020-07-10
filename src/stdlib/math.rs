@@ -39,7 +39,7 @@ pub fn subtraction(args: &Vec<Cell>, env: &Environment) -> Cell {
     Cell::Number(value)
 }
 
-pub fn multipication(args: &Vec<Cell>, env: &Environment) -> Cell {
+pub fn multiplication(args: &Vec<Cell>, env: &Environment) -> Cell {
     let mut value: i64 = 1;
     for i in args {
         let val = i.eval(&env);
@@ -89,7 +89,7 @@ pub fn add_basic_math(env: &mut Environment) {
     stdlib_expand!{env,
         "+" => addition,
         "-" => subtraction,
-        "*" => multipication,
+        "*" => multiplication,
         "/" => division
     };
 }
