@@ -172,3 +172,35 @@ impl PartialEq for Cell {
         }
     }
 }
+
+impl PartialOrd for Cell {
+    fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering> {
+        return match self {
+            Cell::Number(num) => match other {
+                Cell::Number(num2) => Some(num.cmp(num2)),
+                _ => None,
+            },
+            Cell::Symbol(sym) => match other {
+                Cell::Symbol(sym2) => Some(sym.cmp(sym2)),
+                _ => None,
+            },
+            Cell::FuncCall(_, _) => None,
+            Cell::List(list) => match other {
+                Cell::List(list2) => Some(list.partial_cmp(list2).unwrap()),
+                _ => None,
+            },
+            Cell::BuiltIn(_) => None,
+            Cell::Nil => {
+                if let Cell::Nil = other {
+                    return Some(true.cmp(&true));
+                } else {
+                    return None;
+                }
+            }
+            Cell::Bool(val) => match other {
+                Cell::Bool(val2) => Some(val.cmp(val2)),
+                _ => None,
+            },
+        };
+    }
+}
