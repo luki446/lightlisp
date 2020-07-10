@@ -10,6 +10,10 @@ pub fn print_func(args: &Vec<Cell>, env: &Environment) -> Cell {
     Cell::Number(counter)
 }
 
+pub fn exit_func(_args: &Vec<Cell>, _env: &Environment) -> Cell {
+    std::process::exit(0);
+}
+
 fn print_intern(to_print: &Cell, env: &Environment) -> i64 {
     let mut counter = 0;
 
@@ -63,6 +67,7 @@ fn print_intern(to_print: &Cell, env: &Environment) -> i64 {
 
 pub fn add_basic_io(env: &mut Environment) {
     stdlib_expand!{env,
-        "print" => print_func
+        "print" => print_func,
+        "exit" => exit_func
     };
 }
