@@ -183,7 +183,7 @@ mod tests {
 
         assert_eq!(
             inter.interpret(&"(&& (= 123 123 123) (< 10 (* 10 10) (* 10 10 10)))".to_string()),
-            Cell::Bool(false)
+            Cell::Bool(true)
         );
     }
 }
